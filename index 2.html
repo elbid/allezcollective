@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Allez Collective — Trail & Cycling Weekend</title>
+  <meta name="description" content="Piccoli viaggi di allenamento per chi ama faticare. Trail running e cycling weekend in Nord Italia, zona Bergamo.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #111110;
+      --offwhite: #F5F0E8;
+      --offwhite-dark: #EEEAE0;
+      --gray-light: #D3D1C7;
+      --gray-mid: #B4B2A9;
+      --gray: #888780;
+      --gray-dark: #5F5E5A;
+      --orange: #D4541A;
+      --green: #8A9E7B;
+      --green-dark: #27500A;
+      --green-light: #EAF3DE;
+      --green-border: #C0DD97;
+      --amber-light: #FAEEDA;
+      --amber-border: #FAC775;
+      --amber-dark: #633806;
+      --max: 1100px;
+      --pad: clamp(20px, 5vw, 80px);
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', system-ui, sans-serif; background: var(--offwhite); color: var(--black); line-height: 1.6; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 18px var(--pad);
+      background: rgba(17,17,16,0.82);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 0.5px solid rgba(255,255,255,0.07);
+    }
+    .logo { font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--offwhite); text-decoration: none; }
+    .logo span { font-family: 'Inter', sans-serif; font-size: 8px; font-weight: 500; color: var(--green); letter-spacing: 0.22em; display: block; margin-top: 1px; }
+    .nav-links { display: flex; gap: 28px; align-items: center; }
+    .nav-links a { font-size: 13px; color: rgba(245,240,232,0.55); text-decoration: none; transition: color .2s; }
+    .nav-links a:hover { color: var(--offwhite); }
+    .nav-cta { background: var(--orange) !important; color: var(--offwhite) !important; padding: 8px 18px; border-radius: 4px; font-weight: 500; opacity: 1 !important; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      position: relative;
+      display: flex; align-items: center;
+      padding: 120px var(--pad) 80px;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1652447198049-d70d2b77ddb1?w=1800&q=80&fit=crop&crop=center');
+      background-size: cover; background-position: center;
+    }
+    .hero-bg::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(110deg, rgba(17,17,16,0.88) 0%, rgba(17,17,16,0.70) 50%, rgba(44,26,8,0.60) 100%);
+    }
+    .hero-inner { position: relative; z-index: 2; max-width: var(--max); margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 80px; align-items: center; }
+    .eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.18em; color: var(--orange); margin-bottom: 20px; }
+    .hero-h1 { font-family: 'DM Serif Display', serif; font-size: clamp(40px, 5.5vw, 72px); color: var(--offwhite); line-height: 1.05; margin-bottom: 24px; }
+    .hero-sub { font-size: 16px; color: rgba(245,240,232,0.6); line-height: 1.75; margin-bottom: 36px; max-width: 440px; }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn-primary { display: inline-block; background: var(--orange); color: var(--offwhite); font-size: 14px; font-weight: 500; padding: 14px 28px; border-radius: 4px; border: none; cursor: pointer; text-decoration: none; transition: background .2s; }
+    .btn-primary:hover { background: #b84517; }
+    .btn-ghost { display: inline-block; background: transparent; color: var(--offwhite); font-size: 14px; padding: 14px 28px; border-radius: 4px; border: 0.5px solid rgba(245,240,232,0.25); cursor: pointer; text-decoration: none; transition: border-color .2s; }
+    .btn-ghost:hover { border-color: rgba(245,240,232,0.55); }
+    .hero-stats { background: rgba(17,17,16,0.55); border: 0.5px solid rgba(245,240,232,0.1); border-radius: 10px; overflow: hidden; backdrop-filter: blur(8px); }
+    .hero-stat { padding: 22px 28px; border-bottom: 0.5px solid rgba(245,240,232,0.07); }
+    .hero-stat:last-child { border-bottom: none; }
+    .stat-n { font-family: 'DM Serif Display', serif; font-size: 34px; color: var(--offwhite); }
+    .stat-l { font-size: 11px; color: rgba(245,240,232,0.4); margin-top: 4px; letter-spacing: 0.06em; text-transform: uppercase; }
+    .hero-tagline { margin-top: 20px; border-left: 2px solid var(--orange); padding: 14px 18px; background: rgba(212,84,26,0.10); border-radius: 0 6px 6px 0; }
+    .hero-tagline p { font-family: 'DM Serif Display', serif; font-size: 16px; color: var(--offwhite); line-height: 1.5; }
+    .hero-tagline em { color: var(--orange); font-style: normal; }
+
+    /* ── PILLS ── */
+    .pills { background: var(--black); padding: 14px var(--pad); display: flex; gap: 10px; flex-wrap: wrap; }
+    .pill { font-size: 11px; font-weight: 500; letter-spacing: 0.07em; padding: 6px 14px; border-radius: 20px; border: 0.5px solid rgba(245,240,232,0.12); color: rgba(245,240,232,0.4); }
+
+    /* ── PHOTO STRIP ── */
+    .photo-strip { display: grid; grid-template-columns: 1.5fr 1fr 1fr; height: 320px; }
+    .photo-panel { position: relative; overflow: hidden; }
+    .photo-panel img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(30%) contrast(1.05); transition: transform .6s ease; }
+    .photo-panel:hover img { transform: scale(1.04); }
+    .photo-panel-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(17,17,16,0.7) 0%, transparent 50%); }
+    .photo-panel-label { position: absolute; bottom: 16px; left: 16px; font-size: 10px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--offwhite); }
+    .photo-panel-label span { display: block; font-family: 'DM Serif Display', serif; font-size: 16px; letter-spacing: 0; text-transform: none; margin-top: 2px; color: rgba(245,240,232,0.85); }
+
+    /* ── SECTIONS ── */
+    .section { padding: clamp(60px, 8vw, 100px) var(--pad); }
+    .section-inner { max-width: var(--max); margin: 0 auto; }
+    .section-label { font-size: 11px; font-weight: 500; letter-spacing: 0.16em; color: var(--orange); margin-bottom: 8px; }
+    .section-title { font-family: 'DM Serif Display', serif; font-size: clamp(28px, 3.5vw, 44px); color: var(--black); margin-bottom: 40px; line-height: 1.2; }
+
+    /* ── TRIPS ── */
+    .trips-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 20px; }
+    .trip-card { background: var(--black); border-radius: 12px; overflow: hidden; text-decoration: none; color: inherit; display: block; transition: transform .25s; }
+    .trip-card:hover { transform: translateY(-5px); }
+    .trip-img { height: 200px; position: relative; overflow: hidden; }
+    .trip-img img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(20%); transition: transform .5s; }
+    .trip-card:hover .trip-img img { transform: scale(1.05); }
+    .trip-img-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 30%, rgba(17,17,16,0.75) 100%); }
+    .trip-badges { position: absolute; top: 14px; left: 14px; right: 14px; display: flex; justify-content: space-between; align-items: flex-start; }
+    .badge { font-size: 11px; font-weight: 500; padding: 5px 10px; border-radius: 4px; letter-spacing: 0.04em; }
+    .badge-trail { background: var(--green); color: var(--green-dark); }
+    .badge-bike { background: var(--orange); color: var(--offwhite); }
+    .badge-early { background: rgba(245,240,232,0.92); color: var(--orange); font-size: 10px; font-weight: 500; padding: 5px 10px; border-radius: 4px; }
+    .trip-body { padding: 22px 24px 24px; }
+    .trip-title { font-family: 'DM Serif Display', serif; font-size: 24px; color: var(--offwhite); margin-bottom: 6px; line-height: 1.2; }
+    .trip-location { font-size: 12px; color: var(--gray); margin-bottom: 16px; }
+    .dates-row { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
+    .date-chip { font-size: 11px; padding: 5px 11px; border-radius: 4px; border: 0.5px solid rgba(245,240,232,0.12); color: rgba(245,240,232,0.75); }
+    .trip-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 18px; }
+    .ttag { font-size: 10px; padding: 4px 9px; border-radius: 3px; letter-spacing: 0.03em; }
+    .ttag-base { background: rgba(245,240,232,0.06); color: var(--gray); }
+    .ttag-nut { background: rgba(138,158,123,0.14); color: var(--green); border: 0.5px solid rgba(138,158,123,0.28); }
+    .ttag-gear { background: rgba(212,84,26,0.11); color: var(--orange); border: 0.5px solid rgba(212,84,26,0.22); }
+    .trip-footer { display: flex; justify-content: space-between; align-items: baseline; padding-top: 16px; border-top: 0.5px solid rgba(245,240,232,0.07); }
+    .price-main { font-size: 24px; font-weight: 500; color: var(--offwhite); }
+    .price-full { font-size: 13px; color: rgba(245,240,232,0.28); text-decoration: line-through; margin-left: 8px; }
+    .trip-spots { font-size: 11px; color: var(--orange); letter-spacing: 0.04em; }
+
+    /* ── EXPERIENCE ── */
+    .exp-section { background: var(--black); }
+    .exp-section .section-title { color: var(--offwhite); }
+    .exp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+    .exp-card { background: rgba(255,255,255,0.035); border: 0.5px solid rgba(255,255,255,0.07); border-radius: 10px; padding: 28px; }
+    .exp-num { font-family: 'DM Serif Display', serif; font-size: 36px; color: var(--orange); margin-bottom: 16px; opacity: 0.85; }
+    .exp-card-title { font-size: 15px; font-weight: 500; color: var(--offwhite); margin-bottom: 10px; }
+    .exp-card-desc { font-size: 13px; color: rgba(245,240,232,0.45); line-height: 1.75; }
+
+    /* ── HOW ── */
+    .how-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+    .how-step { padding: 0; }
+    .how-n { font-family: 'DM Serif Display', serif; font-size: 48px; color: var(--orange); opacity: 0.3; margin-bottom: 12px; line-height: 1; }
+    .how-title { font-size: 16px; font-weight: 500; margin-bottom: 8px; color: var(--black); }
+    .how-desc { font-size: 14px; color: var(--gray-dark); line-height: 1.7; }
+
+    /* ── MANIFESTO ── */
+    .manifesto {
+      position: relative; overflow: hidden;
+      padding: clamp(80px, 10vw, 140px) var(--pad);
+      text-align: center;
+    }
+    .manifesto-bg {
+      position: absolute; inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1568454537842-d933259bb258?w=1600&q=80&fit=crop');
+      background-size: cover; background-position: center 30%;
+    }
+    .manifesto-bg::after {
+      content: ''; position: absolute; inset: 0;
+      background: rgba(17,17,16,0.78);
+    }
+    .manifesto-inner { position: relative; z-index: 2; max-width: var(--max); margin: 0 auto; }
+    .manifesto blockquote { font-family: 'DM Serif Display', serif; font-size: clamp(28px, 4vw, 56px); color: var(--offwhite); line-height: 1.25; margin-bottom: 24px; }
+    .manifesto p { font-size: 16px; color: rgba(245,240,232,0.55); max-width: 560px; margin: 0 auto; line-height: 1.8; }
+
+    /* ── CTA ── */
+    .cta-section { background: var(--offwhite); }
+    .cta-inner { max-width: 680px; }
+    .early-banner { background: var(--black); border-radius: 8px; padding: 20px 24px; margin-bottom: 32px; }
+    .early-banner strong { font-size: 15px; font-weight: 500; color: var(--offwhite); display: block; margin-bottom: 4px; }
+    .early-banner span { font-size: 12px; color: var(--gray); line-height: 1.6; display: block; }
+
+    /* ── FOOTER ── */
+    footer { background: var(--black); padding: 48px var(--pad); border-top: 0.5px solid rgba(255,255,255,0.06); }
+    .footer-inner { max-width: var(--max); margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+    .footer-logo { font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--offwhite); }
+    .footer-logo span { font-family: 'Inter', sans-serif; font-size: 8px; color: var(--green); letter-spacing: 0.22em; display: block; margin-top: 2px; }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { font-size: 12px; color: var(--gray-dark); text-decoration: none; transition: color .2s; }
+    .footer-links a:hover { color: var(--offwhite); }
+    .footer-copy { font-size: 11px; color: rgba(245,240,232,0.2); margin-top: 32px; text-align: center; max-width: var(--max); margin-left: auto; margin-right: auto; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+      .hero-right { display: none; }
+      .hero { min-height: 90vh; padding: 100px 20px 60px; }
+      .photo-strip { grid-template-columns: 1fr 1fr; height: 240px; }
+      .photo-strip .photo-panel:last-child { display: none; }
+      .how-grid { grid-template-columns: 1fr; gap: 24px; }
+    }
+    @media (max-width: 640px) {
+      nav { padding: 14px 20px; }
+      .nav-links a:not(.nav-cta) { display: none; }
+      .section { padding: 50px 20px; }
+      .pills { padding: 14px 20px; }
+      .trips-grid { grid-template-columns: 1fr; }
+      .exp-grid { grid-template-columns: 1fr; }
+      .photo-strip { grid-template-columns: 1fr; height: 200px; }
+      .photo-strip .photo-panel:not(:first-child) { display: none; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#" class="logo">ALLEZ<span>COLLECTIVE</span></a>
+    <div class="nav-links">
+      <a href="#viaggi">Viaggi</a>
+      <a href="#come-funziona">Come funziona</a>
+      <a href="#chi-siamo">Chi siamo</a>
+      <a href="#waitlist" class="nav-cta">Unisciti</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-inner">
+      <div class="hero-left">
+        <div class="eyebrow">TRAIL · GRAVEL · CYCLING · TRIATHLON</div>
+        <h1 class="hero-h1">For those who love the hard parts.</h1>
+        <p class="hero-sub">Piccoli viaggi di allenamento per chi ama faticare. Una community di persone come te, in posti che valgono la fatica.</p>
+        <div class="hero-actions">
+          <a href="#viaggi" class="btn-primary">Vedi i prossimi viaggi</a>
+          <a href="#chi-siamo" class="btn-ghost">Scopri di più</a>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="stat-n">8–12</div>
+            <div class="stat-l">Persone per trip</div>
+          </div>
+          <div class="hero-stat">
+            <div class="stat-n">2 giorni</div>
+            <div class="stat-l">Weekend intenso</div>
+          </div>
+          <div class="hero-stat">
+            <div class="stat-n">Nord IT</div>
+            <div class="stat-l">Zona Bergamo</div>
+          </div>
+        </div>
+        <div class="hero-tagline">
+          <p>Allenamento, nutrizione, community.<br><em>Tutto insieme, in un weekend.</em></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="pills">
+    <span class="pill">Allenamento</span>
+    <span class="pill">Nutrizione sportiva</span>
+    <span class="pill">Community</span>
+    <span class="pill">Gear session</span>
+    <span class="pill">Like-minded people</span>
+  </div>
+
+  <!-- PHOTO STRIP -->
+  <div class="photo-strip">
+    <div class="photo-panel">
+      <img src="https://images.unsplash.com/photo-1652447198049-d70d2b77ddb1?w=900&q=80&fit=crop&crop=center" alt="Trail running">
+      <div class="photo-panel-overlay"></div>
+      <div class="photo-panel-label">Trail<span>In movimento</span></div>
+    </div>
+    <div class="photo-panel">
+      <img src="https://images.unsplash.com/photo-1452626038306-9aae5e071dd3?w=600&q=80&fit=crop&crop=center" alt="Cycling">
+      <div class="photo-panel-overlay"></div>
+      <div class="photo-panel-label">Cycling<span>Insieme</span></div>
+    </div>
+    <div class="photo-panel">
+      <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&q=80&fit=crop&crop=center" alt="Montagna">
+      <div class="photo-panel-overlay"></div>
+      <div class="photo-panel-label">Montagna<span>Il palcoscenico</span></div>
+    </div>
+  </div>
+
+  <!-- VIAGGI -->
+  <section class="section" id="viaggi">
+    <div class="section-inner">
+      <div class="section-label">PROSSIMI VIAGGI</div>
+      <div class="section-title">Scegli la tua fatica</div>
+      <div class="trips-grid">
+
+        <div class="trip-card">
+          <div class="trip-img">
+            <img src="https://images.unsplash.com/photo-1652447198049-d70d2b77ddb1?w=800&q=75&fit=crop&crop=center" alt="Trail Weekend Orobie">
+            <div class="trip-img-overlay"></div>
+            <div class="trip-badges">
+              <span class="badge badge-trail">Trail running</span>
+              <span class="badge-early">Early bird</span>
+            </div>
+          </div>
+          <div class="trip-body">
+            <div class="trip-title">Trail Weekend — Orobie</div>
+            <div class="trip-location">📍 Bergamo, Alpi Orobie</div>
+            <div class="dates-row">
+              <span class="date-chip">29–30 ago 2026</span>
+              <span class="date-chip">26–27 set 2026</span>
+            </div>
+            <div class="trip-tags">
+              <span class="ttag ttag-base">30–40 km · 2000 D+</span>
+              <span class="ttag ttag-nut">Nutrition coaching</span>
+              <span class="ttag ttag-gear">Gear session</span>
+            </div>
+            <div class="trip-footer">
+              <div><span class="price-main">€ 350</span><span class="price-full">€ 410</span></div>
+              <span class="trip-spots">Waiting list aperta</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="trip-card">
+          <div class="trip-img">
+            <img src="https://images.unsplash.com/photo-1452626038306-9aae5e071dd3?w=800&q=75&fit=crop&crop=center" alt="Bike Weekend Bergamasca">
+            <div class="trip-img-overlay"></div>
+            <div class="trip-badges">
+              <span class="badge badge-bike">Cycling</span>
+              <span class="badge-early">Early bird</span>
+            </div>
+          </div>
+          <div class="trip-body">
+            <div class="trip-title">Bike Weekend — Bergamasca</div>
+            <div class="trip-location">📍 Bergamo, Prealpi</div>
+            <div class="dates-row">
+              <span class="date-chip">29–30 ago 2026</span>
+              <span class="date-chip">26–27 set 2026</span>
+            </div>
+            <div class="trip-tags">
+              <span class="ttag ttag-base">150–200 km · 2500 D+</span>
+              <span class="ttag ttag-nut">Nutrition coaching</span>
+              <span class="ttag ttag-gear">Gear session</span>
+            </div>
+            <div class="trip-footer">
+              <div><span class="price-main">€ 350</span><span class="price-full">€ 410</span></div>
+              <span class="trip-spots">Waiting list aperta</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="section exp-section">
+    <div class="section-inner">
+      <div class="section-label">OGNI VIAGGIO È DI PIÙ</div>
+      <div class="section-title">Non solo chilometri.</div>
+      <div class="exp-grid">
+        <div class="exp-card">
+          <div class="exp-num">01</div>
+          <div class="exp-card-title">Nutrizione sportiva</div>
+          <div class="exp-card-desc">Ogni camp include sessioni con un nutrition coach. Impari a mangiare per la performance — prima, durante, dopo.</div>
+        </div>
+        <div class="exp-card">
+          <div class="exp-num">02</div>
+          <div class="exp-card-title">Technical sponsor</div>
+          <div class="exp-card-desc">Partner tecnici selezionati portano gear, analisi e sessioni dedicate. Test reali, in condizioni reali.</div>
+        </div>
+        <div class="exp-card">
+          <div class="exp-num">03</div>
+          <div class="exp-card-title">Community duratura</div>
+          <div class="exp-card-desc">Il gruppo non finisce con il viaggio. Strava club, canale dedicato, prossimi camp insieme.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW -->
+  <section class="section" id="come-funziona">
+    <div class="section-inner">
+      <div class="section-label">COME FUNZIONA</div>
+      <div class="section-title">Tre passi per partire</div>
+      <div class="how-grid">
+        <div class="how-step">
+          <div class="how-n">01</div>
+          <div class="how-title">Iscriviti alla waiting list</div>
+          <div class="how-desc">Scegli il viaggio e la data. Ti contattiamo noi con tutti i dettagli entro 48h.</div>
+        </div>
+        <div class="how-step">
+          <div class="how-n">02</div>
+          <div class="how-title">Ti uniamo al gruppo</div>
+          <div class="how-desc">8–12 persone, stesso livello. Vi conoscete prima della partenza via canale dedicato.</div>
+        </div>
+        <div class="how-step">
+          <div class="how-n">03</div>
+          <div class="how-title">Fatica, impara, torna</div>
+          <div class="how-desc">Logistica, alloggio, nutrition e gear inclusi. Tu pensa solo ad allenarti.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MANIFESTO -->
+  <section class="manifesto" id="chi-siamo">
+    <div class="manifesto-bg"></div>
+    <div class="manifesto-inner">
+      <div class="section-label" style="color:var(--orange); margin-bottom:20px;">CHI SIAMO</div>
+      <blockquote>"La fatica è il viaggio."</blockquote>
+      <p>Allez Collective non è una scuola di sport. È una comunità di persone che hanno scelto la fatica come modo di viaggiare — e di crescere. Nessun agonismo, nessuna performance. Solo persone come te, voglia di faticare, e posti bellissimi.</p>
+    </div>
+  </section>
+
+  <!-- WAITLIST -->
+  <section class="section cta-section" id="waitlist">
+    <div class="section-inner">
+      <div class="cta-inner">
+        <div class="section-label">UNISCITI</div>
+        <div class="section-title">Pronto a faticare?</div>
+        <div class="early-banner">
+          <strong>Early bird aperto — € 350 a persona</strong>
+          <span>Prezzo pieno € 410 · Massimo 10 posti per data<br>Trail Weekend Orobie · Bike Weekend Bergamasca<br>Date: 29–30 agosto 2026 o 26–27 settembre 2026</span>
+        </div>
+        <iframe data-tally-src="https://tally.so/embed/Y5gPb0?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="1255" frameborder="0" marginheight="0" marginwidth="0" title="Allez Collective - Waiting List"></iframe>
+        <script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">ALLEZ<span>COLLECTIVE</span></div>
+      <div class="footer-links">
+        <a href="https://instagram.com" target="_blank">Instagram</a>
+        <a href="https://strava.com" target="_blank">Strava</a>
+        <a href="mailto:info@allezcollective.it">Contatti</a>
+      </div>
+    </div>
+    <p class="footer-copy">© 2026 Allez Collective · Foto: Unsplash (Nick Gosset, Maico Amorim)</p>
+  </footer>
+
+</body>
+</html>
